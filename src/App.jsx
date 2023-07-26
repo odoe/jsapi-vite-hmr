@@ -12,30 +12,30 @@ function App() {
   const [localView, setLocalView] = useState();
 
   useEffect(() => {
-    if (mapDiv.current && !localView) {
+    if (mapDiv.current) {
       /**
        * Initialize application
        */
       const webmap = new WebMap({
         portalItem: {
-          id: "aa1d3f80270146208328cf66d022e09c"
-        }
+          id: "aa1d3f80270146208328cf66d022e09c",
+        },
       });
 
       const view = new MapView({
         container: mapDiv.current,
-        map: webmap
+        map: webmap,
       });
 
       createBookmarks(view).then((bookmarks) => {
         const bkExpand = new Expand({
           view,
           content: bookmarks,
-          expanded: true
+          expanded: true,
         });
 
         // Add the widget to the top-right corner of the view
-        view.ui.add(bkExpand, "top-right");
+        view.ui.add(bkExpand, "top-left");
 
         // bonus - how many bookmarks in the webmap?
         webmap.when(() => {
@@ -49,7 +49,7 @@ function App() {
         setLocalView(view);
       });
     }
-  }, [localView, mapDiv]);
+  }, [mapDiv]);
 
   return (
     <>

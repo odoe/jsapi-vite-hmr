@@ -4,7 +4,7 @@ export async function createBookmarks(view) {
   const bookmarks = new Bookmarks({
     view,
     // allows bookmarks to be added, edited, or deleted
-    editingEnabled: true
+    editingEnabled: true,
   });
   return bookmarks;
 }
